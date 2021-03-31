@@ -48,3 +48,35 @@ let etapas = [
         ]
     }
 ];
+let quadradoNumero = document.getElementsByClassName('numero');
+function inicia(){
+    for(let i=2;i<5;i++){
+        let divs = document.querySelector('.d-1-3');
+        let div = document.createElement("div");
+        divs.appendChild(div).classList.add('numero');
+        
+    }
+    for(let i=0;i<quadradoNumero.length;i++){
+    let element = quadradoNumero[i];
+    element.addEventListener('mousedown',clicar);
+    element.addEventListener('mouseup',sair);
+    element.addEventListener('onkeypress',clicar);
+}
+}
+  
+window.addEventListener("load",inicia);
+
+
+console.log(quadradoNumero.length);
+
+
+function clicar(event){
+    event.target.style.backgroundColor = 'red';
+    event.textContent = event.keycode;
+}
+function sair(event){
+    event.target.style.backgroundColor = '#E8E8E8';
+}
+function tecla(event){
+    event.textContent = event.keycode;
+}
