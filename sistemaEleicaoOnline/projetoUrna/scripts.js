@@ -63,6 +63,9 @@ let quadradosVereador = etapas.filter(function(element, index){
                 let divs = document.querySelector('div.d-1-3');
                 let div = document.createElement('div');
                     divs.appendChild(div).classList.add('numero');
+                let espacamento = document.querySelectorAll('div.numero')[i];
+                espacamento.style.marginLeft = '5px'
+                divs.style.marginRight = '2px'
             }
 
                 /*Adicionando os três input que estavam faltando para os 5 do vereador
