@@ -48,27 +48,55 @@ let etapas = [
         ]
     }
 ];
-let quadradoNumero = document.getElementsByClassName('numero');
+    let quadradoNumero = document.getElementsByClassName('numero');
+
 function inicia(){
+    //Adicionando os três input que estavam faltando para os 5 do vereador
     for(let i=2;i<5;i++){
-        let divs = document.querySelector('.d-1-3');
-        let div = document.createElement("div");
-        divs.appendChild(div).classList.add('numero');
-        
+        let inputs = document.querySelector('.d-1-3');
+        let input = document.createElement("input");
+            inputs.appendChild(input).classList.add('numero')
     }
-    for(let i=0;i<quadradoNumero.length;i++){
-    let element = quadradoNumero[i];
-    element.addEventListener('mousedown',clicar);
-    element.addEventListener('mouseup',sair);
-    element.addEventListener('onkeypress',clicar);
+    //Adicionando o input ao primeiro quadrado que pisca
+    let divInput1 = document.querySelectorAll('.numero')[0];
+    let input = document.createElement("input");
+        divInput1.appendChild(input).classList.add('numero');
+    
+        divInput1.addEventListener('mousedown',clicar);
+        divInput1.addEventListener('mouseup',sair);
+        document.addEventListener('keydown',function(event){
+            let teclas = event.keyCode;
+            console.log(teclas)
+        })
+        //Limitando o input a 1 caractere
+    let primeiroQuadrado = document.querySelectorAll('input.numero')[0];
+        primeiroQuadrado.setAttribute('maxlength',1);
+        primeiroQuadrado.setAttribute('type','number');
+
+    //Adicionando o input ao segundo quadrado
+    let divInput2 = document.querySelectorAll('.numero')[2];
+    let input2 = document.createElement("input");
+        divInput2.appendChild(input2).classList.add('numero');
+        divInput1.addEventListener('mousedown',clicar);
+        divInput1.addEventListener('mouseup',sair);
+     //Limitando o input a 1 caractere
+    let segundoQuadrado = document.querySelectorAll('input.numero')[1];
+        segundoQuadrado.setAttribute('maxlength',1);
+        segundoQuadrado.setAttribute('type','number');
+
+    //adicionando os eventos aos tres inputs que faltavam para o vereador
+    for(let i=4;i<quadradoNumero.length;i++){
+        let element = quadradoNumero[i];
+            element.addEventListener('mousedown',clicar);
+            element.addEventListener('mouseup',sair);
+    //Limitando o input a 1 caractere
+            element.setAttribute('maxlength',1);
+            element.setAttribute('type','number');
+   
+    }
 }
-}
-  
+
 window.addEventListener("load",inicia);
-
-
-console.log(quadradoNumero.length);
-
 
 function clicar(event){
     event.target.style.backgroundColor = 'red';
@@ -76,7 +104,4 @@ function clicar(event){
 }
 function sair(event){
     event.target.style.backgroundColor = '#E8E8E8';
-}
-function tecla(event){
-    event.textContent = event.keycode;
 }
