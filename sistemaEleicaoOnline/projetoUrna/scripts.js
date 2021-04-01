@@ -67,46 +67,10 @@ let quadradosVereador = etapas.filter(function(element, index){
                 espacamento.style.marginLeft = '5px'
                 divs.style.marginRight = '2px'
             }
-
-                /*Adicionando os três input que estavam faltando para os 5 do vereador
-                for(let i=doisPrimeirosInputs.length;i<numerosVereador;i++){
-                    let inputs = document.querySelector('.d-1-3');
-                    let input = document.createElement("input");
-                        inputs.appendChild(input).classList.add('numero')
-                }
-                //adicionando os eventos aos tres inputs que faltavam para o vereador
-                for(let i=doisPrimeirosInputs.length;i<quantidadeInputs.length;i++){
-                    let element = quantidadeInputs[i];
-                        element.addEventListener('mousedown',clicar);
-                        element.addEventListener('mouseup',sair);
-                    //Limitando o input a 1 caractere
-                        element.setAttribute('maxlength',1);
-                        element.setAttribute('type','number');
-                }
-                for(let i = 0;i<doisPrimeirosInputs.length;i++){
-                    let input = document.createElement("input");
-                        doisPrimeirosInputs[i].appendChild(input).classList.add('numero');
-                        doisPrimeirosInputs[i].addEventListener('mousedown',clicar);
-                        doisPrimeirosInputs[i].addEventListener('mouseup',sair);
-                }
-            let teste2 = document.querySelectorAll('input.numero');
-                for(let i = 0;i<teste2.length;i++){
-                    teste2[i].addEventListener('keydown',function(event){
-                    let teclas = event.keyCode;
-                        console.log(teclas);
-                    });
-                    teste2[i].setAttribute('maxlength',1);
-                    teste2[i].setAttribute('type','number');
-                } 
-        }*/
         
     }
         window.addEventListener("load",inicia);
-    }
-    else{
-        console.log('b');
-    }
-        
+    }       
 });
 
 function clicar(event){
@@ -115,7 +79,183 @@ function clicar(event){
 function sair(event){
     event.target.style.backgroundColor = '#E8E8E8';
 }
+
 function clicou(event){
+
+let teste1 = document.querySelectorAll('div.numero');
+        if(event == 1){
+            
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+            
+        }
+        if(event == 2){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+                
+        }
+        if(event == 3){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event == 4){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==5){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==6){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==7){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==8){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==9){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        }
+        if(event==0){
+            if(teste1[0].textContent == ''){
+                teste1[0].textContent = event;
+            }
+            else if(teste1[1].textContent == ''){
+                teste1[1].textContent = event;
+            }
+                else if(teste1[2].textContent == ''){
+                   teste1[2].textContent = event; 
+                }
+                    else if(teste1[3].textContent == ''){
+                        teste1[3].textContent = event;
+                    }
+                        else if(teste1[4].textContent == ''){
+                            teste1[4].textContent = event;
+                        }
+        } 
 }
 
 
