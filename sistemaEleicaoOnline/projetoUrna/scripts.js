@@ -48,60 +48,69 @@ let etapas = [
         ]
     }
 ];
-    let quadradoNumero = document.getElementsByClassName('numero');
-
-function inicia(){
-    //Adicionando os três input que estavam faltando para os 5 do vereador
-    for(let i=2;i<5;i++){
-        let inputs = document.querySelector('.d-1-3');
-        let input = document.createElement("input");
-            inputs.appendChild(input).classList.add('numero')
-    }
-    //Adicionando o input ao primeiro quadrado que pisca
-    let divInput1 = document.querySelectorAll('.numero')[0];
-    let input = document.createElement("input");
-        divInput1.appendChild(input).classList.add('numero');
-    
-        divInput1.addEventListener('mousedown',clicar);
-        divInput1.addEventListener('mouseup',sair);
-        document.addEventListener('keydown',function(event){
-            let teclas = event.keyCode;
-            console.log(teclas)
-        })
-        //Limitando o input a 1 caractere
-    let primeiroQuadrado = document.querySelectorAll('input.numero')[0];
-        primeiroQuadrado.setAttribute('maxlength',1);
-        primeiroQuadrado.setAttribute('type','number');
-
-    //Adicionando o input ao segundo quadrado
-    let divInput2 = document.querySelectorAll('.numero')[2];
-    let input2 = document.createElement("input");
-        divInput2.appendChild(input2).classList.add('numero');
-        divInput1.addEventListener('mousedown',clicar);
-        divInput1.addEventListener('mouseup',sair);
-     //Limitando o input a 1 caractere
-    let segundoQuadrado = document.querySelectorAll('input.numero')[1];
-        segundoQuadrado.setAttribute('maxlength',1);
-        segundoQuadrado.setAttribute('type','number');
-
-    //adicionando os eventos aos tres inputs que faltavam para o vereador
-    for(let i=4;i<quadradoNumero.length;i++){
-        let element = quadradoNumero[i];
-            element.addEventListener('mousedown',clicar);
-            element.addEventListener('mouseup',sair);
-    //Limitando o input a 1 caractere
-            element.setAttribute('maxlength',1);
-            element.setAttribute('type','number');
    
-    }
-}
+let quadradosVereador = etapas.filter(function(element){
+    if(element.numeros==5){
 
-window.addEventListener("load",inicia);
+        function inicia(){
+            let numerosVereador = element.numeros;
+            //Quantidade de input
+            let quantidadeInputs = document.getElementsByClassName('numero');
+            //Os dois primeiros inputs
+            let doisPrimeirosInputs = document.querySelectorAll('.numero');
+
+            for(let i = doisPrimeirosInputs.length;i<numerosVereador;i++){
+                let divs = document.querySelector('div.d-1-3');
+                let div = document.createElement('div');
+                    divs.appendChild(div).classList.add('numero');
+            }
+
+                /*Adicionando os três input que estavam faltando para os 5 do vereador
+                for(let i=doisPrimeirosInputs.length;i<numerosVereador;i++){
+                    let inputs = document.querySelector('.d-1-3');
+                    let input = document.createElement("input");
+                        inputs.appendChild(input).classList.add('numero')
+                }
+                //adicionando os eventos aos tres inputs que faltavam para o vereador
+                for(let i=doisPrimeirosInputs.length;i<quantidadeInputs.length;i++){
+                    let element = quantidadeInputs[i];
+                        element.addEventListener('mousedown',clicar);
+                        element.addEventListener('mouseup',sair);
+                    //Limitando o input a 1 caractere
+                        element.setAttribute('maxlength',1);
+                        element.setAttribute('type','number');
+                }
+                for(let i = 0;i<doisPrimeirosInputs.length;i++){
+                    let input = document.createElement("input");
+                        doisPrimeirosInputs[i].appendChild(input).classList.add('numero');
+                        doisPrimeirosInputs[i].addEventListener('mousedown',clicar);
+                        doisPrimeirosInputs[i].addEventListener('mouseup',sair);
+                }
+            let teste2 = document.querySelectorAll('input.numero');
+                for(let i = 0;i<teste2.length;i++){
+                    teste2[i].addEventListener('keydown',function(event){
+                    let teclas = event.keyCode;
+                        console.log(teclas);
+                    });
+                    teste2[i].setAttribute('maxlength',1);
+                    teste2[i].setAttribute('type','number');
+                } 
+        }*/
+        
+    }
+window.addEventListener("load",inicia)
+    }
+        
+});
 
 function clicar(event){
     event.target.style.backgroundColor = 'red';
-    event.textContent = event.keycode;
 }
 function sair(event){
     event.target.style.backgroundColor = '#E8E8E8';
 }
+
+
+    
+
+
