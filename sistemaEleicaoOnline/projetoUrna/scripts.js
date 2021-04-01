@@ -49,7 +49,7 @@ let etapas = [
     }
 ];
    
-let quadradosVereador = etapas.filter(function(element){
+let quadradosVereador = etapas.filter(function(element, index){
     if(element.numeros==5){
 
         function inicia(){
@@ -98,7 +98,10 @@ let quadradosVereador = etapas.filter(function(element){
         }*/
         
     }
-window.addEventListener("load",inicia)
+        window.addEventListener("load",inicia);
+    }
+    else{
+        console.log('b');
     }
         
 });
@@ -108,6 +111,8 @@ function clicar(event){
 }
 function sair(event){
     event.target.style.backgroundColor = '#E8E8E8';
+}
+function clicou(event){
 }
 
 
