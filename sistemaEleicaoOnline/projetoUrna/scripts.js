@@ -70,7 +70,6 @@ if(etapas[0].titulo=='VEREADOR'){
     window.addEventListener("load",inicia);
 }      
 
-
     function clicou(event){
         let divNumeros = document.querySelector('div.d-1-3');
         let numeros = divNumeros.children;
