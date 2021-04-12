@@ -49,213 +49,95 @@ let etapas = [
     }
 ];
    
-let quadradosVereador = etapas.filter(function(element, index){
-    if(element.numeros==5){
+if(etapas[0].titulo=='VEREADOR'){
 
-        function inicia(){
-            let numerosVereador = element.numeros;
-            //Quantidade de input
-            let quantidadeInputs = document.getElementsByClassName('numero');
-            //Os dois primeiros inputs
-            let doisPrimeirosInputs = document.querySelectorAll('.numero');
+    function inicia(){
+        let numerosVereador = etapas[0].numeros;
+        //Quantidade de input
+        //Os dois primeiros inputs
+        let doisPrimeirosInputs = document.querySelectorAll('.numero');
 
-            for(let i = doisPrimeirosInputs.length;i<numerosVereador;i++){
-                let divs = document.querySelector('div.d-1-3');
-                let div = document.createElement('div');
-                    divs.appendChild(div).classList.add('numero');
-                let espacamento = document.querySelectorAll('div.numero')[i];
-                espacamento.style.marginLeft = '5px'
-                divs.style.marginRight = '2px'
-            }
-        
+        for(let i = doisPrimeirosInputs.length;i<numerosVereador;i++){
+            let divs = document.querySelector('div.d-1-3');
+            let div = document.createElement('div');
+                divs.appendChild(div).classList.add('numero');
+            let espacamento = document.querySelectorAll('div.numero')[i];
+            espacamento.style.marginLeft = '5px'
+            divs.style.marginRight = '2px'
+        }
+    
     }
-        window.addEventListener("load",inicia);
-    }       
-});
+    window.addEventListener("load",inicia);
+}      
 
-function clicar(event){
-    event.target.style.backgroundColor = 'red';
-}
-function sair(event){
-    event.target.style.backgroundColor = '#E8E8E8';
-}
 
-function clicou(event){
-
-let teste1 = document.querySelectorAll('div.numero');
-        if(event == 1){
-            
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
+    function clicou(event){
+        let divNumeros = document.querySelector('div.d-1-3');
+        let numeros = divNumeros.children;
+        let valor1 = numeros[0].textContent;
+        let valor2 = numeros[1].textContent;
+        let valor3 = numeros[2].textContent;
+        let valor4 = numeros[3].textContent;
+        let valor5 = numeros[4].textContent;
+    
+            if(valor1 == ""){
+                numeros[0].classList.remove('pisca');
+                numeros[0].textContent = event; 
+                numeros[1].classList.add('pisca');
             }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
+            else if(valor2 == ""){
+                numeros[1].classList.remove('pisca');
+                numeros[1].textContent = event; 
+                numeros[2].classList.add('pisca');
             }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
+                else if(valor3 == ""){
+                    numeros[2].classList.remove('pisca');
+                    numeros[2].textContent = event;
+                    numeros[3].classList.add('pisca');
                 }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
+                    else if(valor4 == ""){
+                        numeros[3].classList.remove('pisca');
+                        numeros[3].textContent = event;
+                        numeros[4].classList.add('pisca');
                     }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
+                        else if(valor5 == ""){
+                            numeros[4].classList.remove('pisca');
+                            numeros[4].textContent = event;
                         }
-            
-        }
-        if(event == 2){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
+    
+        let numeroCandidato = '';
+            for(let i=0;i<numeros.length;i++){
+                let concatena = numeros[i].innerText;
+                numeroCandidato += concatena;
             }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
+            if(numeroCandidato == etapas[0].candidatos[0].numero){
+                let divFotosCandidatos = document.querySelector('div.d-1-right');
+                let firstChild = divFotosCandidatos.firstElementChild;
+                    firstChild.innerHTML = `<img src="./images/38111.jpg">
+                    VEREADOR`
+                let lastChild = divFotosCandidatos.lastElementChild;
+                    lastChild.remove();
+    
+                let identificacao = document.querySelector('div.d-1-4');
+                    identificacao.innerHTML = `
+                    Nome:${etapas[0].candidatos[0].nome}<br>
+                    Partido:${etapas[0].candidatos[0].partido}<br>
+                    `;
             }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-                
-        }
-        if(event == 3){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
+            else if(numeroCandidato == etapas[0].candidatos[1].numero){
+                let divFotosCandidatos = document.querySelector('div.d-1-right');
+                let firstChild = divFotosCandidatos.firstElementChild;
+                    firstChild.innerHTML = `<img src="./images/77222.jpg">
+                    VEREADOR`
+                let lastChild = divFotosCandidatos.lastElementChild;
+                    lastChild.remove();
+    
+                    let identificacao = document.querySelector('div.d-1-4');
+                    identificacao.innerHTML = `
+                    Nome:${etapas[1].candidatos[1].nome}<br>
+                    Partido:${etapas[1].candidatos[1].partido}<br>
+                    `;
             }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event == 4){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==5){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==6){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==7){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==8){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==9){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        }
-        if(event==0){
-            if(teste1[0].textContent == ''){
-                teste1[0].textContent = event;
-            }
-            else if(teste1[1].textContent == ''){
-                teste1[1].textContent = event;
-            }
-                else if(teste1[2].textContent == ''){
-                   teste1[2].textContent = event; 
-                }
-                    else if(teste1[3].textContent == ''){
-                        teste1[3].textContent = event;
-                    }
-                        else if(teste1[4].textContent == ''){
-                            teste1[4].textContent = event;
-                        }
-        } 
 }
 
 
