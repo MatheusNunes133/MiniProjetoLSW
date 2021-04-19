@@ -48,7 +48,7 @@ let etapas = [
         ]
     }
 ];
-
+//let existe;
 let tituloCandidato = 'VEREADOR';
     if(tituloCandidato == 'VEREADOR'){
         vereador();
@@ -121,7 +121,9 @@ let tituloCandidato = 'VEREADOR';
 
         }
 //função que adiciona os numeros as div's
+
 function clicou(event){
+    
     let divNumeros = document.querySelector('div.d-1-3');
     let numeros = divNumeros.children;
     for (let i =0;i<numeros.length;i++) {
@@ -133,29 +135,21 @@ function clicou(event){
             break
         }
     }
-
     let numeroCandidato = '';
         for(let i=0;i<numeros.length;i++){
             let concatena = numeros[i].innerText;
             numeroCandidato += concatena;
         }
-
-        for(let i = 0;i<etapas.length;i++){
-            for(let k = 0;k<etapas[i].candidatos.length;k++){
-                if(etapas[i].candidatos[k].numero == numeroCandidato){
-                    dadosCandidato(numeroCandidato);
-                }
-            }
-        }
-        
-    }
+//console.log(teste);
+    dadosCandidato(numeroCandidato);             
+}
 
 //Função que adiciona os dados do candidato
 function dadosCandidato(numeroCandidato){
     //adiciona aos campos a foto e descrição do vereador escolhido
     for(let i =0; i<etapas.length;i++){
         for(let c = 0;c<etapas[i].candidatos.length;c++){
-            if(etapas[i].candidatos[c].numero == numeroCandidato && etapas[i].candidatos[c].numero.length == 5){
+            if(etapas[i].candidatos[c].numero == numeroCandidato && etapas[i].numeros == 5){
                 for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
                     let divFotosCandidatos = document.querySelector('div.d-1-right');
                     let firstChild = divFotosCandidatos.firstElementChild;
@@ -167,7 +161,13 @@ function dadosCandidato(numeroCandidato){
                         Nome:${etapas[i].candidatos[c].nome}<br>
                         Partido:${etapas[i].candidatos[c].partido}<br>
                         `;
-                }
+                    
+                } 
+                //existe = true; 
+                return;
+            }
+            else if(etapas[0].candidatos[c].numero != numeroCandidato && numeroCandidato.length ==5){
+                existe = false;
             }
             else if(etapas[i].candidatos[c].numero == numeroCandidato && etapas[i].candidatos[c].numero.length == 2){
                 for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
@@ -183,16 +183,27 @@ function dadosCandidato(numeroCandidato){
                         Partido:${etapas[i].candidatos[c].partido}<br>
                         Vice-Prefeito:${etapas[i].candidatos[c].vice}
                         `
+                        
                 }
+                //existe = true;
+                return;
             }
         }
+        
     }
-
+        /*if(existe == false){
+            let nulo = document.querySelector('.d-1-4');
+                nulo.innerHTML = 'asd'
+        return;
+        }*/
+    
 }
-
+let contador;
+contador = 0;
 //adiciona o voto confirmar ao sesscionStorage
 let arrayVereadorConfirm = [];
 function confirma(){
+    contador++;
     let divNumeros = document.querySelector('div.d-1-3');
     let numeros = divNumeros.children;
     let numeroCandidato = '';
@@ -200,9 +211,9 @@ function confirma(){
             let concatena = numeros[i].innerText;
             numeroCandidato += concatena;
         }
-
+let teste = document.querySelector('.d-1-3');
     console.log(numeroCandidato)
-    if(numeros[0].textContent != ""){
+    if(teste.childElementCount != 0){
     for(let i = 0;i<etapas.length;i++){
         for(let k = 0;k<etapas[i].candidatos.length;k++){
             if(etapas[i].candidatos[k].numero == numeroCandidato){
@@ -221,7 +232,7 @@ function confirma(){
     }
     prefeito();
     }
-    else if(numeros[0].textContent == ""){ 
+    else if(teste.childElementCount == 0){ 
             let dados = {
                 nome: ' ',
                 numero: ' ',
@@ -230,7 +241,30 @@ function confirma(){
             }
         arrayVereadorConfirm.push(dados);
         sessionStorage.setItem('arrayCandidatosConfirm',JSON.stringify(arrayVereadorConfirm));
+
+        let votoBranco = document.querySelector('.d-1-3');
+        votoBranco.textContent = ''
+        let div1 = document.createElement('div');
+        let div2 = document.createElement('div');
+            div1.classList.add('numero');
+            div2.classList.add('numero');
+        votoBranco.appendChild(div1);
+        votoBranco.appendChild(div2);
+        votoBranco.style.textAlign = 'left';
+
         prefeito();
+    }
+    if(contador ==2){
+        let fim = document.querySelector('.d-1-3');
+            fim.innerHTML = `FIM`;
+            fim.style.fontSize ='20pt';
+            fim.style.textAlign = 'center';
+        let divEspecificacoes = document.querySelector('.d-1-4');
+            divEspecificacoes.textContent = '';
+        let divTitulo = document.querySelector('.d-1-2');
+            divTitulo.textContent = '';
+        let divVotarEm = document.querySelector('.d-1-1');
+            divVotarEm.textContent = '';
     }
 }
 
@@ -241,6 +275,49 @@ function branco(){
             numeros[i].classList.remove('pisca');
             numeros[i].textContent = '';
            // numeros[++i].classList.add('pisca');
- 
-    }   
+    }
+    let divVotoBranco = document.querySelector('.d-1-3');
+        divVotoBranco.textContent = 'VOTO EM BRANCO';
+        divVotoBranco.style.fontSize ='20pt';
+        divVotoBranco.style.textAlign = 'center';
+    let divEspecificacoes = document.querySelector('.d-1-4');
+        divEspecificacoes.textContent = '';
+} 
+
+function corrige(){
+    let divNumeros = document.querySelector('div.d-1-3');
+    let numeros = divNumeros.children;
+    for (let i =0;i<numeros.length;i++){
+            numeros[i].classList.remove('pisca');
+            numeros[i].textContent = '';
+           // numeros[++i].classList.add('pisca');
+    }
+    //let divNumeros2 = document.querySelectorAll('.numero');
+    let telaRight = document.querySelector('.d-1-image ');
+    let divDosNumeros = telaRight.childElementCount;
+
+        if(divDosNumeros==0){
+        //modifica a descrição do vereador escolhido
+        let descricaoVereador = document.querySelector('div.d-1-4');
+                descricaoVereador.innerHTML = `Nome: <br>
+            Partido: <br>`
+        }
+        else if(divDosNumeros!=0){
+        //remove a foto do vereador;
+        let divFotoVereador = document.querySelector('div.d-1-image img');
+            divFotoVereador.remove();
+        //remove o a legenda da voto do primeiro vereador
+        let legendaVereador = document.querySelector('div.d-1-image');
+            legendaVereador.textContent = "";
+        //remove legenda do voto de vice prefeito inicial
+        let legendaVice = document.querySelector('.small');
+            legendaVice.textContent = "";
+            legendaVice.style.border = 'none';
+    
+        //modifica a descrição do vereador escolhido
+        let descricaoVereador = document.querySelector('div.d-1-4');
+            descricaoVereador.innerHTML = `Nome: <br>
+            Partido: <br>`
+        }
+
 }
