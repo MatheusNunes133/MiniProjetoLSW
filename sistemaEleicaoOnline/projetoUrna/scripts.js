@@ -50,9 +50,8 @@ let etapas = [
 ];
 
 let existe;
-let existe2;
-let teste = document.querySelector('.botao--confirma');
-    teste.removeAttribute('onclick');
+let botaoConfirm = document.querySelector('.botao--confirma');
+    botaoConfirm.removeAttribute('onclick');
 let tituloCandidato = 'VEREADOR';
     if(tituloCandidato == 'VEREADOR'){
         vereador();
@@ -139,7 +138,7 @@ function clicou(event){
         if(valor == ""){
             numeros[i].classList.remove('pisca');
             numeros[i].textContent = event;
-           // numeros[++i].classList.add('pisca');
+
             break
         }
     }
@@ -148,17 +147,17 @@ function clicou(event){
             let concatena = numeros[i].innerText;
             numeroCandidato += concatena;
         }
-//console.log(teste);
+
     dadosCandidato(numeroCandidato);    
     
     if(existe == true){
         console.log('hoho');
-        teste.setAttribute('onclick', 'confirma()');
+        botaoConfirm.setAttribute('onclick', 'confirma()');
     }
     let divNulo = document.querySelector('div.d-1-4');
         if(divNulo.textContent == 'VOTO NULO'){
-            teste.setAttribute('onclick', 'confirma()');
-            //xiste = false;
+            botaoConfirm.setAttribute('onclick', 'confirma()');
+
         }
     if(existe2 ==true){
         console.log('t')
@@ -252,7 +251,7 @@ function confirma(){
                     espacamento.style.marginLeft = '5px'
                     div1.style.marginRight = '2px'
             }
-            teste.removeAttribute('onclick');
+            botaoConfirm.removeAttribute('onclick');
         }
     
     //se o contador for igual a 2 significa que foi confirmado o voto de vereador e prefeito, então chegou ao fim
@@ -283,7 +282,7 @@ function branco(){
     for (let i =0;i<numeros.length;i++) {
             numeros[i].classList.remove('pisca');
             numeros[i].textContent = '';
-           // numeros[++i].classList.add('pisca');
+          
     }
     //colocando a div d-1-3 com a frase de voto em branco
     let divVotoBranco = document.querySelector('.d-1-3');
@@ -292,7 +291,7 @@ function branco(){
         divVotoBranco.style.textAlign = 'center';
     let divEspecificacoes = document.querySelector('.d-1-4');
         divEspecificacoes.textContent = '';
-    teste.setAttribute('onclick', 'confirma()');
+    botaoConfirm.setAttribute('onclick', 'confirma()');
 } 
 
 //conta quantas vezes o botão branco foi acionado
@@ -306,7 +305,7 @@ function corrige(){
     for (let i =0;i<numeros.length;i++){
             numeros[i].classList.remove('pisca');
             numeros[i].textContent = '';
-           // numeros[++i].classList.add('pisca');
+           
     }
     //pegando a div das imagens
     let telaRight = document.querySelector('.d-1-image ');
@@ -319,7 +318,7 @@ function corrige(){
             Partido: <br>`
             descricaoVereador.style.textAlign = 'left';
             descricaoVereador.style.fontSize = '13pt'
-            teste.removeAttribute('onclick');
+            botaoConfirm.removeAttribute('onclick');
         }
         //se for diferente de 0, então tem imagens.. exclui as imagens e atualiza as informações
         else if(divImagens!=0){
@@ -340,7 +339,7 @@ function corrige(){
             Partido: <br>`
             descricaoVereador.style.textAlign = 'left';
             descricaoVereador.style.fontSize = '13pt'
-            teste.removeAttribute('onclick');
+            botaoConfirm.removeAttribute('onclick');
         }
         // se a div que contem os numeros for igual a string 'VOTO EM BRANCO' o botão branco foi acionado
         if(divNumeros.textContent == 'VOTO EM BRANCO'){
@@ -373,6 +372,6 @@ function corrige(){
                             div1.style.marginRight = '2px'
                     }
                 }
-                teste.removeAttribute('onclick');
+                botaoConfirm.removeAttribute('onclick');
         }
 }
