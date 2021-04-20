@@ -270,6 +270,7 @@ function confirma(){
             divVotarEm.textContent = '';
     }
     else{
+        botaoConfirm.removeAttribute('onclick');
         prefeito();
     }
     
