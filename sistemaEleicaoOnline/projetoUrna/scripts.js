@@ -50,6 +50,9 @@ let etapas = [
 ];
 
 let existe;
+let existe2;
+let teste = document.querySelector('.botao--confirma');
+    teste.removeAttribute('onclick');
 let tituloCandidato = 'VEREADOR';
     if(tituloCandidato == 'VEREADOR'){
         vereador();
@@ -87,7 +90,8 @@ let tituloCandidato = 'VEREADOR';
             //modifica a descrição do vereador escolhido
             let descricaoVereador = document.querySelector('div.d-1-4');
                 descricaoVereador.innerHTML = `Nome: <br>
-                Partido: <br>`
+                Partido: <br>`;
+                descricaoVereador.style.textAlign = 'left';
         
         }
 
@@ -116,12 +120,15 @@ let tituloCandidato = 'VEREADOR';
                 descricaoPrefeito.innerHTML = `Nome: <br>
                 Partido: <br>
                 Vice-Prefeito:`;
+                descricaoPrefeito.style.fontSize = '13pt'
+                descricaoPrefeito.style.textAlign = 'left';
                 //modifica o titulo que informa para quem será o voto
                 let tituloPrefeito = document.querySelector('div.d-1-2 span');
                     tituloPrefeito.textContent = 'PREFEITO';
 
         }
-//função que adiciona os numeros as div's
+
+        //função que adiciona os numeros as div's
 
 function clicou(event){
     
@@ -142,15 +149,30 @@ function clicou(event){
             numeroCandidato += concatena;
         }
 //console.log(teste);
-    dadosCandidato(numeroCandidato);             
+    dadosCandidato(numeroCandidato);    
+    
+    if(existe == true){
+        console.log('hoho');
+        teste.setAttribute('onclick', 'confirma()');
+    }
+    let divNulo = document.querySelector('div.d-1-4');
+        if(divNulo.textContent == 'VOTO NULO'){
+            teste.setAttribute('onclick', 'confirma()');
+            //xiste = false;
+        }
+    if(existe2 ==true){
+        console.log('t')
+    }
 }
+
 
 //Função que adiciona os dados do candidato
 function dadosCandidato(numeroCandidato){
+    existe = false;
     //adiciona aos campos a foto e descrição do vereador escolhido
     for(let i =0; i<etapas.length;i++){
         for(let c = 0;c<etapas[i].candidatos.length;c++){
-            if(etapas[i].candidatos[c].numero == numeroCandidato && etapas[i].numeros == 5){
+            if(etapas[0].candidatos[c].numero == numeroCandidato && etapas[i].numeros == 5){
                 for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
                     let divFotosCandidatos = document.querySelector('div.d-1-right');
                     let firstChild = divFotosCandidatos.firstElementChild;
@@ -169,7 +191,7 @@ function dadosCandidato(numeroCandidato){
                 return;
             }
             
-            else if(etapas[i].candidatos[c].numero == numeroCandidato && etapas[i].candidatos[c].numero.length == 2){
+            else if(etapas[1].candidatos[c].numero == numeroCandidato && etapas[i].candidatos[c].numero.length == 2){
                 for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
                     let divFt = document.querySelectorAll('.d-1-image');
                     console.log(divFt)
@@ -186,11 +208,16 @@ function dadosCandidato(numeroCandidato){
                         identificacao.style.textAlign='left';
                         identificacao.style.fontSize = '13pt';
                 }
+                existe = true;
                 return;
             }
-            else if(etapas[i].candidatos[c].numero != numeroCandidato){
+            else if(etapas[0].candidatos[c].numero != numeroCandidato && numeroCandidato.length == 5){
                 existe = false;
             }
+            else if(etapas[1].candidatos[c].numero!= numeroCandidato && numeroCandidato.length == 2){
+                existe = false;
+            }
+            
         }
         
     }
@@ -199,6 +226,7 @@ function dadosCandidato(numeroCandidato){
                 nulo.innerHTML = 'VOTO NULO';
                 nulo.style.textAlign = 'center';
                 nulo.style.fontSize = '20pt'
+                existe = false;
         return;
         }
     
@@ -207,64 +235,30 @@ function dadosCandidato(numeroCandidato){
 let contadorFim;
 contadorFim = 0;
 //adiciona o voto confirmar ao sesscionStorage
-let arrayVereadorConfirm = [];
 function confirma(){
     contadorFim++;
-    //concatenando os números informados
     let divNumeros = document.querySelector('div.d-1-3');
-    let numeros = divNumeros.children;
-    let numeroCandidato = '';
-        for(let i=0;i<numeros.length;i++){
-            let concatena = numeros[i].innerText;
-            numeroCandidato += concatena;
+        if(divNumeros.textContent == 'VOTO EM BRANCO'){
+            
+            let corrigeBranco = document.querySelector('div.d-1-3');
+                corrigeBranco.textContent = '';
+                corrigeBranco.style.textAlign = 'left';
+
+            for(let i = 0;i<etapas[1].numeros;i++){
+                let div1 = document.createElement('div');
+                div1.classList.add('numero');
+                corrigeBranco.appendChild(div1);
+                let espacamento = document.querySelectorAll('div.numero')[i];
+                    espacamento.style.marginLeft = '5px'
+                    div1.style.marginRight = '2px'
+            }
+            teste.removeAttribute('onclick');
         }
-    //pegando a div ontem tem o numeros dos candidatos
-    let divNCandidato = document.querySelector('.d-1-3');
-        //se a quantidade de elementos for diferente de zero então  tem alguma coisa dentro de cada elemento
-        if(divNCandidato.childElementCount != 0){
-            for(let i = 0;i<etapas.length;i++){
-                for(let k = 0;k<etapas[i].candidatos.length;k++){
-                    if(etapas[i].candidatos[k].numero == numeroCandidato){
-                
-                        let dados = {
-                            nome: etapas[i].candidatos[k].nome,
-                            numero: etapas[i].candidatos[k].numero,
-                            partido: etapas[i].candidatos[k].partido,
-                            vice: etapas[i].candidatos[i].vice,
-                        }
-                        arrayVereadorConfirm.push(dados);
-                        sessionStorage.setItem('arrayCandidatosConfirm',JSON.stringify(arrayVereadorConfirm));
-                
-                    }
-                }
-            }
-    prefeito();
-    }
-    //se for igual a zero, não tem elemento algum então o botão branco foi acionado
-    else if(divNCandidato.childElementCount == 0){ 
-            let dados = {
-                nome: '',
-                numero: '',
-                partido: '',
-                vice: '',
-            }
-        arrayVereadorConfirm.push(dados);
-        sessionStorage.setItem('arrayCandidatosConfirm',JSON.stringify(arrayVereadorConfirm));
-        let votoBranco = document.querySelector('.d-1-3');
-        votoBranco.textContent = ''
-        let div1 = document.createElement('div');
-        let div2 = document.createElement('div');
-            div1.classList.add('numero');
-            div2.classList.add('numero');
-        votoBranco.appendChild(div1);
-        votoBranco.appendChild(div2);
-        votoBranco.style.textAlign = 'left';
-
-        prefeito();
-    }
-
+    
     //se o contador for igual a 2 significa que foi confirmado o voto de vereador e prefeito, então chegou ao fim
     if(contadorFim ==2){
+        let images = document.querySelector('div.d-1-right');
+            images.remove();
         let fim = document.querySelector('.d-1-3');
             fim.innerHTML = `FIM`;
             fim.style.fontSize ='20pt';
@@ -276,6 +270,10 @@ function confirma(){
         let divVotarEm = document.querySelector('.d-1-1');
             divVotarEm.textContent = '';
     }
+    else{
+        prefeito();
+    }
+    
 }
 
 function branco(){
@@ -294,6 +292,7 @@ function branco(){
         divVotoBranco.style.textAlign = 'center';
     let divEspecificacoes = document.querySelector('.d-1-4');
         divEspecificacoes.textContent = '';
+    teste.setAttribute('onclick', 'confirma()');
 } 
 
 //conta quantas vezes o botão branco foi acionado
@@ -320,6 +319,7 @@ function corrige(){
             Partido: <br>`
             descricaoVereador.style.textAlign = 'left';
             descricaoVereador.style.fontSize = '13pt'
+            teste.removeAttribute('onclick');
         }
         //se for diferente de 0, então tem imagens.. exclui as imagens e atualiza as informações
         else if(divImagens!=0){
@@ -340,6 +340,7 @@ function corrige(){
             Partido: <br>`
             descricaoVereador.style.textAlign = 'left';
             descricaoVereador.style.fontSize = '13pt'
+            teste.removeAttribute('onclick');
         }
         // se a div que contem os numeros for igual a string 'VOTO EM BRANCO' o botão branco foi acionado
         if(divNumeros.textContent == 'VOTO EM BRANCO'){
@@ -372,6 +373,6 @@ function corrige(){
                             div1.style.marginRight = '2px'
                     }
                 }
-           
+                teste.removeAttribute('onclick');
         }
 }
