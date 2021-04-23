@@ -342,6 +342,8 @@ let contadorFim = 0;
                         divTitulo.textContent = '';
                     let divVotarEm = document.querySelector('.d-1-1');
                         divVotarEm.textContent = '';
+                    let divInformacoes = document.querySelector('.d-2');
+                        divInformacoes.remove();
                 }
                 else{
                     objFuncoes.removeOnclick();
