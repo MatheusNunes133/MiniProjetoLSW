@@ -91,19 +91,19 @@ let objFuncoes = {
     dadosCandidato(numeroCandidato){
         existe = false;
         //adiciona aos campos a foto e descrição do vereador escolhido
-
-            for(let c = 0;c<etapas[0].candidatos.length;c++){
-                if(etapas[0].candidatos[c].numero == numeroCandidato && etapas[0].numeros == 5){
-                    for(let f = 0;f<etapas[0].candidatos[c].fotos.length;f++){
+        for(let i = 0; i<etapas.length;i++){
+            for(let c = 0;c<etapas[i].candidatos.length;c++){
+                if(etapas[0].candidatos[c].numero == numeroCandidato && etapas[i].numeros == 5){
+                    for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
                         let divFotosCandidatos = document.querySelector('div.d-1-right');
                         let firstChild = divFotosCandidatos.firstElementChild;
-                            firstChild.innerHTML = `<img src="./images/${etapas[0].candidatos[c].fotos[f].url}">
-                                ${etapas[0].candidatos[c].fotos[f].legenda}`
+                            firstChild.innerHTML = `<img src="./images/${etapas[i].candidatos[c].fotos[f].url}">
+                                ${etapas[i].candidatos[c].fotos[f].legenda}`
     
                         let identificacao = document.querySelector('div.d-1-4');
                             identificacao.innerHTML = `
-                                Nome:${etapas[0].candidatos[c].nome}<br>
-                                Partido:${etapas[0].candidatos[c].partido}<br>
+                                Nome:${etapas[i].candidatos[c].nome}<br>
+                                Partido:${etapas[i].candidatos[c].partido}<br>
                                 `;
                             identificacao.style.textAlign='left';
                             identificacao.style.fontSize = '13pt';
@@ -112,18 +112,18 @@ let objFuncoes = {
                 return;
                 }
                 
-                else if(etapas[1].candidatos[c].numero == numeroCandidato && etapas[1].candidatos[c].numero.length == 2){
-                    for(let f = 0;f<etapas[0].candidatos[c].fotos.length;f++){
+                else if(etapas[1].candidatos[c].numero == numeroCandidato && etapas[i].candidatos[c].numero.length == 2){
+                    for(let f = 0;f<etapas[i].candidatos[c].fotos.length;f++){
                         let divFt = document.querySelectorAll('.d-1-image');
                             divFt[f].innerHTML = `
-                            <img src="./images/${etapas[1].candidatos[c].fotos[f].url}">
-                            ${etapas[1].candidatos[c].fotos[f].legenda}
+                            <img src="./images/${etapas[i].candidatos[c].fotos[f].url}">
+                            ${etapas[i].candidatos[c].fotos[f].legenda}
                             `;
                         let identificacao = document.querySelector('div.d-1-4');
                             identificacao.innerHTML = `
-                            Nome:${etapas[1].candidatos[c].nome}<br>
-                            Partido:${etapas[1].candidatos[c].partido}<br>
-                            Vice-Prefeito:${etapas[1].candidatos[c].vice}
+                            Nome:${etapas[i].candidatos[c].nome}<br>
+                            Partido:${etapas[i].candidatos[c].partido}<br>
+                            Vice-Prefeito:${etapas[i].candidatos[c].vice}
                             `
                             identificacao.style.textAlign='left';
                             identificacao.style.fontSize = '13pt';
@@ -140,7 +140,7 @@ let objFuncoes = {
                 
             }
             
-        
+        }
             if(existe == false){
                 let nulo = document.querySelector('.d-1-4');
                     nulo.innerHTML = 'VOTO NULO';
@@ -148,8 +148,9 @@ let objFuncoes = {
                     nulo.style.fontSize = '20pt'
                     existe = false;
             return;
-            }
+            
         
+        }
     },
     // remove o voto branco em retorna a div sem conteúdo dentro
     removeVtBranco(){
